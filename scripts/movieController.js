@@ -1,14 +1,15 @@
 
 // Author(s): Chase, John, Max, and Paul
 // Purpose: This module controls the movie output functions, sends ajax requests to tmdb
-// ┌(° ͜ʖ͡°)┘  
+// ┌(° ͜ʖ͡°)┘
 
 //imports
 const firebase = require("firebase")
+const movieFactory = require("./movieFactory")
 
 // Create object to contain a function. Will be updated
-const searchController = Object.create(null, {
-    //searchController.search - get data, put it on the page
+const movieController = Object.create(null, {
+    //movieController.search - get data, put it on the page
     "search": {
         value: function () {
             // get the search_input value for to be plugged in to the URL for the request
@@ -36,7 +37,7 @@ const searchController = Object.create(null, {
                             <div class="card-block">
                               <h4 class="card-title">${result.title}</h4>
                               <p class="card-text">Release Date${result.release_date}</p>
-                              <a href="#" class="btn btn-primary">Do something</a>
+                              <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
                             </div>
                           </div>
                             `
@@ -47,7 +48,7 @@ const searchController = Object.create(null, {
                             <div class="card-block">
                               <h4 class="card-title">${result.title}</h4>
                               <p class="card-text">Release Date${result.release_date}</p>
-                              <a href="#" class="btn btn-primary">Do something</a>
+                              <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
                             </div>
                           </div>
                             `
@@ -56,7 +57,28 @@ const searchController = Object.create(null, {
                     })
                     // jq call the id, print html into that div
                     $("#search_db-results").html(resultEl)
+
+                    //add listener to add to watch list button
+                    $(".addToWatchlist").on("click", e => {
+                        movieController.storeMovie(e.target.id)
+                    })
                 })
+        }
+    },
+    "storeMovie" : {
+        value: function (movieId) {
+            return $.ajax({
+                "async": true,
+                "crossDomain": true,
+                "url": `https://api.themoviedb.org/3/movie/${movieId}?api_key=5e5026b9b18d41494cf1a8f0bc65cacc&language=en-US&append_to_response=credits`,
+                "method": "GET",
+                "headers": {},
+                "data": "{}"
+            }).then(
+                function(response) {
+                    movieFactory.add(response)
+                }
+            )
         }
     },
     "getCast": {
@@ -69,7 +91,7 @@ const searchController = Object.create(null, {
                 "headers": {},
                 "data": "{}"
             }).then(
-                
+
             )
         }
     }
@@ -77,4 +99,4 @@ const searchController = Object.create(null, {
 })
 
 // exports
-module.exports = searchController
+module.exports = movieController
