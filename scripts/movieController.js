@@ -31,23 +31,23 @@ const searchController = Object.create(null, {
                         // if statement for if the movie info returns without a picture, replace it with a no image found image
                         if (result.poster_path === null) {
                             resultEl += `
-                            <div class="card-block" style="width: 20rem;">
-                            <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
-                            <div class="card-block">
-                              <h4 class="card-title">${result.title}</h4>
-                              <p class="card-text">Release Date${result.release_date}</p>
-                              <a href="#" class="btn btn-primary">Do something</a>
+                            <div class="movieCard">
+                            <img class="movieCard_img" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
+                            <div class="movieCard_text">
+                              <h4 class="movieCard_title">${result.title}</h4>
+                              <p class="movieCard_date">Release Date${result.release_date}</p>
+                              <button class="button" id="${result.id}">Add to watchlist</button>
                             </div>
                           </div>
                             `
                         } else {
                             resultEl += `
-                            <div class="card-block" style="width: 20rem;">
-                            <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${result.poster_path}" alt="Card image cap">
-                            <div class="card-block">
-                              <h4 class="card-title">${result.title}</h4>
-                              <p class="card-text">Release Date${result.release_date}</p>
-                              <a href="#" class="btn btn-primary">Do something</a>
+                            <div class="movieCard">
+                            <img class="movieCard_img" src="https://image.tmdb.org/t/p/w185//${result.poster_path}" alt="Card image cap">
+                            <div class="movieCard_text">
+                              <h4 class="movieCard_title">${result.title}</h4>
+                              <p class="movieCard_date">Release Date${result.release_date}</p>
+                              <button class="button" id="${result.id}">Add to watchlist</button>
                             </div>
                           </div>
                             `
