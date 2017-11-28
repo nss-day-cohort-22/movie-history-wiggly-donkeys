@@ -26,6 +26,7 @@
     "grunt-eslint": "^20.1.0"
   },
   "dependencies": {
-    "firebase": "^4.6.2"
+    "firebase": "^4.6.2",
+    "jquery": "^3.2.1"
   }
 }
