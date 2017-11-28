@@ -1,2 +1,3 @@
-const $ = require("jquery");
-const firebase = require("firebase");
+const auth = require("./auth/auth.js")
+
+auth.init()
