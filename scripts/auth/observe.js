@@ -1,3 +1,7 @@
+// Author(s): Chase, John, Max, and Paul
+// Purpose: Watches if a user is logged in or out. Executes code if/else logged in.
+// ┌(° ͜ʖ͡°)┘  
+
 const firebase = require("firebase")
 
 const observer = Object.create(null, {
@@ -5,10 +9,11 @@ const observer = Object.create(null, {
         value: function (auth) {
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
+                    // const loadDash = require("../loadDash")
                     auth.activeUser = user
                     // hide modal
                     $("#regForm").addClass("hidden")
-                    console.log(user.uid, "user")
+                    $("#mainContent").removeClass("hidden")
                 } else {
                     // nav.init(false)
                     auth.activeUser = null
