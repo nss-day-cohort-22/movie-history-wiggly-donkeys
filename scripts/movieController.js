@@ -58,6 +58,20 @@ const searchController = Object.create(null, {
                     $("#search_db-results").html(resultEl)
                 })
         }
+    },
+    "getCast": {
+        value: function (movieId) {
+            return $.ajax({
+                "async": true,
+                "crossDomain": true,
+                "url": `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=5e5026b9b18d41494cf1a8f0bc65cacc`,
+                "method": "GET",
+                "headers": {},
+                "data": "{}"
+            }).then(
+                
+            )
+        }
     }
 
 })
