@@ -38,14 +38,23 @@ const auth = Object.create(null, {
                     $("#regForm_email").val(),
                     $("#regForm_password").val()
                 )
-                    // Clear the form
-                    $("#regForm_email").val("")
-                    $("#regForm_password").val("")
+                // Clear the form
+                $("#regForm_email").val("")
+                $("#regForm_password").val("")
             })
+
+            // logout user
+            $("#logout").on("click", e => {
+                // logout
+                this.logout()
+                $("#regForm").removeClass("hidden")
+                $("#mainContent").addClass("hidden")
+            })
+
             // Set up authentication observer
             observe.init(this)
         },
-        
+
     },
     "validate": {
         value: function (email, password) {
@@ -77,11 +86,15 @@ const auth = Object.create(null, {
     },
     "logout": {
         value: function () {
-            firebase.auth().signOut().then(function () {
-                // Sign-out successful.
-            }).catch(function (error) {
-                // An error happened.
-            });
+            firebase
+                .auth()
+                .signOut()
+                .then(function () {
+                    // Sign-out successful.
+                })
+                .catch(function (error) {
+                    // An error happened.
+                });
         }
     }
 })

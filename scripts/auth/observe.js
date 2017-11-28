@@ -8,7 +8,7 @@ const observer = Object.create(null, {
                     auth.activeUser = user
                     // hide modal
                     $("#regForm").addClass("hidden")
-                    console.log(user.uid, "user")
+                    $("#mainContent").removeClass("hidden")
                 } else {
                     // nav.init(false)
                     auth.activeUser = null
