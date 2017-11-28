@@ -1,37 +1,31 @@
 {
-  "name": "",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-<<<<<<< HEAD
-    "eslint": "^4.10.0",
-    "eslint-plugin-import": "^2.8.0",
-    "grunt": "^1.0.1",
-    "grunt-browserify": "^5.2.0",
-    "grunt-contrib-uglify": "git+https://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
-=======
-    "eslint": "^4.12.0",
-    "eslint-config-google": "^0.9.1",
-    "eslint-plugin-import": "^2.8.0",
-    "firebase": "^4.6.2",
-    "grunt": "^1.0.1",
-    "grunt-browserify": "^5.2.0",
->>>>>>> master
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-eslint": "^20.1.0"
-  },
-  "dependencies": {
-<<<<<<< HEAD
-    "firebase": "^4.6.2",
-=======
-    "grunt-contrib-uglify": "^3.2.1",
->>>>>>> master
-    "jquery": "^3.2.1"
+    "name": "music-history",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/nss-day-cohort-22/movie-history-wiggly-donkeys.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+      "url": ""
+    },
+    "homepage": "",
+    "devDependencies": {
+      "eslint": "^4.10.0",
+      "eslint-plugin-import": "^2.8.0",
+      "grunt": "^1.0.1",
+      "grunt-browserify": "^5.2.0",
+      "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+      "grunt-contrib-watch": "^1.0.0",
+      "grunt-eslint": "^20.1.0"
+    },
+    "dependencies": {
+      "firebase": "^4.6.2"
+    }
   }
-}

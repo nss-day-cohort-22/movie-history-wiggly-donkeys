@@ -4,13 +4,4 @@ build
 .eslintrc.json
 Gruntfile.js
 package-lock.json
-<<<<<<< HEAD
-package.json.DS_Store
-node_modules
-build
-.DS_Store
-node_modules
-build
-=======
 package.json
->>>>>>> master
