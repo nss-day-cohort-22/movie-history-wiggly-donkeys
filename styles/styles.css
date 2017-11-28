@@ -1,3 +1,28 @@
 .hidden {
     display: none;
 }
+
+
+#regForm {
+    padding: 2em;
+    margin: auto;
+    z-index: 1;
+    background-image: url("../tomato.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 10px 5px 20px green;
+    text-align: center;
+    color: green;
+    text-shadow: 1px 1px 1px black;
+    font-size: 2em;
+}
+
+#search_input {
+    height: 3em;
+    border-radius: 10px;
+}
+
+.button {
+    border-radius: 10px;
+    box-shadow: 10px 5px 20px green;
+}
