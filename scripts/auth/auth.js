@@ -1,7 +1,13 @@
+// Author(s): Chase, John, Max, and Paul
+// Purpose: This module haandles user login/reg/logout
+// ┌(° ͜ʖ͡°)┘  
+
+// imports
+const searchController = require("../movieController.js")
 const firebase = require("firebase")
 const observe = require("./observe")
-const $ = require("jquery")
 
+// config object given by the movie db
 var config = {
     apiKey: "AIzaSyADtDFsNEKSAHJqo90jkhKuocvBuEtBG5Q",
     authDomain: "freshtomatoes-aedbb.firebaseapp.com",
@@ -11,15 +17,20 @@ var config = {
     messagingSenderId: "879756087889"
 };
 
+// object factory for authentication
 const auth = Object.create(null, {
+    // active user for configuring if online
     "activeUser": {
         value: null,
         writable: true
     },
+    //initialized function
     "init": {
         value: function () {
+            // init firebase
             firebase.initializeApp(config)
-            // login registered user
+
+            // Event listener to login registered user
             $("#regForm_login").on("click", e => {
                 // Validate login information
                 this.validate(
@@ -31,7 +42,7 @@ const auth = Object.create(null, {
                 $("#regForm_password").val("")
             })
 
-            // register user
+            // Event listener to register user
             $("#regForm_saveButt").on("click", e => {
                 // save registered information
                 this.create(
@@ -43,12 +54,18 @@ const auth = Object.create(null, {
                 $("#regForm_password").val("")
             })
 
-            // logout user
+            // Event listener to logout user
             $("#logout").on("click", e => {
-                // logout
+                // change hidden classes back to modal shown when user logs out
                 this.logout()
                 $("#regForm").removeClass("hidden")
                 $("#mainContent").addClass("hidden")
+            })
+
+            // Search Bar button
+            $("#search_db").on("click", e => {
+                // Function executed on click
+                searchController.search()
             })
 
             // Set up authentication observer
@@ -56,6 +73,7 @@ const auth = Object.create(null, {
         },
 
     },
+    // FB validation function for email and password
     "validate": {
         value: function (email, password) {
             firebase
@@ -64,12 +82,12 @@ const auth = Object.create(null, {
                 .catch(function (error) {
                     const errorCode = error.code
                     const errorMessage = error.message
-
+                    // tell user wrong info
                     alert("Email or password is invalid")
                 })
         }
-
     },
+    // Creator function for registration
     "create": {
         value: function (email, password) {
             firebase
@@ -79,11 +97,12 @@ const auth = Object.create(null, {
                     // Handle Errors here.
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    // ...
+                    // alert any errors to user
                     alert("Email or password is invalid")
                 })
         }
     },
+    // logout function
     "logout": {
         value: function () {
             firebase
@@ -99,4 +118,5 @@ const auth = Object.create(null, {
     }
 })
 
+// exports
 module.exports = auth
