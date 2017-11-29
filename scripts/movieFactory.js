@@ -9,17 +9,20 @@ const movieFactory = Object.create(null, {
     },
     "all": {
         value: function () {
-            return $.ajax({
-                "url": `${firebaseURL}/.json`,
-                "method": "GET"
-            }).then(movies => {
-                this.cache = Object.keys(movies).map(key => {
-                        movies[key].id = key
-                        return movies[key]
-                    })
+            return firebase.auth().currentUser.getToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}/movies/.json?auth=${idToken}`,
+                        "method": "GET"
+                    }).then(movies => {
+                        this.cache = Object.keys(movies).map(key => {
+                            movies[key].firebaseId = key
+                            return movies[key]
+                        })
 
-                return this.cache
-            })
+                        return this.cache
+                    })
+                })
         }
     },
     "add": {
@@ -29,11 +32,11 @@ const movieFactory = Object.create(null, {
                     return $.ajax({
                         "url": `${firebaseURL}/movies/.json?auth=${idToken}`,
                         "method": "POST",
-                        "data": JSON.stringify({"movie": movie, "uid": firebase.auth().currentUser.uid})
+                        "data": JSON.stringify({ "movie": movie, "uid": firebase.auth().currentUser.uid, "watched": false })
                     })
-              }).catch(function(error) {
-                window.alert("Error while adding the movie. Please try again.")
-              })
+                }).catch(function (error) {
+                    window.alert("Error while adding the movie. Please try again.")
+                })
         }
     },
     "remove": {
