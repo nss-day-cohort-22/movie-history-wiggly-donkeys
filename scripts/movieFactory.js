@@ -2,18 +2,20 @@
 // Purpose: This module handles the GET, POST, PUT, AND DELETE of movies with Firebase
 
 // imports
+//Author: Max Wolf
+
 const auth = require("./auth/auth")
 const firebaseURL = "https://freshtomatoes-aedbb.firebaseio.com"
 const firebase = require("firebase")
 
 // Obj.cr function that acts as our factory
 const movieFactory = Object.create(null, {
-    // set a cache for writing to
+//CACHED ARRAY OF MOVIES IN FIREBASE... use when not needing another AJAX call
     "cache": {
         value: null,
         writable: true
     },
-    // this key is a function that returns All movies from Firebase, then places them into the cache.
+//GET ALL MOVIES FROM DATABASE -> RETURN THE CACHED ARRAY WITH FIREBASEID AS A VALUE IN THE MOVIE OBJECT
     "all": {
         value: function () {
             return firebase.auth().currentUser.getToken(true)
@@ -31,7 +33,7 @@ const movieFactory = Object.create(null, {
                 })
         }
     },
-    // this function adds movies when clicked into firebase
+//ADD MOVIE TO FIREBASE with userId, watched status, and rating
     "add": {
         value: function (movie) {
             return firebase.auth().currentUser.getToken(true)
@@ -46,23 +48,32 @@ const movieFactory = Object.create(null, {
                 })
         }
     },
-    // this function removes movies from firebase on click
+//DELETE MOVIE FROM FIREBASE
     "remove": {
         value: function (id) {
-            return $.ajax({
-                "url": `${firebaseURL}/${id}/.json`,
-                "method": "DELETE"
-            })
+            return firebase.auth().currentUser.getToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}/movies/${id}/.json`,
+                        "method": "DELETE"
+                    })
+                })
         }
     },
-    // function that will be used in our rating system and watched boolean
+//FOR REPLACING 'WATCHED' OR 'RATING' VALUES OF MOVIE IN FIREBASE
+    //*** target = the object value/location you will be replacing (i.e. watched || rating)
+    //*** id =  the firebaseId of the object (this is contained in the cached array as firebaseId)
+    //*** dataToReplace = the new value to replace the old one (i.e. watched -> true || rating -> 5)
     "replace": {
-        value: function (movie, id) {
-            return $.ajax({
-                "url": `${firebaseURL}/${id}/.json`,
-                "method": "PUT",
-                "data": JSON.stringify(movie)
-            })
+        value: function (dataToReplace, id, target) {
+            return firebase.auth().currentUser.getToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}/movies/${id}/${target}/.json`,
+                        "method": "PUT",
+                        "data": JSON.stringify(dataToReplace)
+                    })
+                })
         }
     }
 })
