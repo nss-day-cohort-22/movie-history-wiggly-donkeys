@@ -7,6 +7,7 @@
 const firebase = require("firebase")
 const movieFactory = require("./movieFactory")
 const searchStoredMovies = require("./searchStored")
+const reviewStars = require("./stars")
 const cardsHTML = require("./cardsHTML")
 
 // Create object to contain a function. Will be updated
@@ -60,6 +61,10 @@ const movieController = Object.create(null, {
                     // jq call the id, print html into that div
                     $("#search_db-results").html(resultEl)
 
+
+
+                    //add the second search bar to the dom...
+
                     //add listener to add to watch list button
                     $(".addToWatchlist").on("click", e => {
                         movieController.storeMovie(e.target.id)
@@ -93,10 +98,11 @@ const movieController = Object.create(null, {
                             movie => resultEl += cardsHTML(movie)
                         )
                     $('#search_db-results').html(resultEl)
-
+                    //add star functionality
+                    reviewStars()
                 })
 
-                searchStoredMovies.init()
+            searchStoredMovies.init()
 
         }
     }
