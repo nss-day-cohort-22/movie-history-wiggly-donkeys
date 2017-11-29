@@ -7,6 +7,7 @@ const movieController = require("../movieController.js")
 const firebase = require("firebase")
 const observe = require("./observe")
 
+
 // config object given by the movie db
 var config = {
     apiKey: "AIzaSyADtDFsNEKSAHJqo90jkhKuocvBuEtBG5Q",

@@ -50,3 +50,8 @@
     width: 50%;
     height: 60%;
 }
+
+.card-text {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
