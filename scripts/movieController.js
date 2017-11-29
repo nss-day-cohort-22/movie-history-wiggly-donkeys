@@ -33,24 +33,24 @@ const movieController = Object.create(null, {
                         if (result.poster_path === null) {
                             resultEl += `
                             <div class="card-block" style="width: 20rem;">
-                            <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
-                            <div class="card-block">
-                              <h4 class="card-title">${result.title}</h4>
-                              <p class="card-text">Release Date${result.release_date}</p>
-                              <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
+                                <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
+                                <div class="card-block_inner">
+                                    <h4 class="card-title">${result.title}</h4>
+                                    <p class="card-text">Release Date${result.release_date}</p>
+                                    <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
+                                </div>
                             </div>
-                          </div>
                             `
                         } else {
                             resultEl += `
                             <div class="card-block" style="width: 20rem;">
-                            <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${result.poster_path}" alt="Card image cap">
-                            <div class="card-block">
-                              <h4 class="card-title">${result.title}</h4>
-                              <p class="card-text">Release Date${result.release_date}</p>
-                              <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
+                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${result.poster_path}" alt="Card image cap">
+                                <div class="card-block_inner">
+                                    <h4 class="card-title">${result.title}</h4>
+                                    <p class="card-text">Release Date${result.release_date}</p>
+                                    <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
+                                </div>
                             </div>
-                          </div>
                             `
                         }
 
