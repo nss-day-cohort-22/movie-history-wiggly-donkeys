@@ -87,6 +87,7 @@ const movieController = Object.create(null, {
                 .then(function (response) {
                     debugger
                     let resultEl = ""
+                    console.log(response)
                     response.filter(
                         movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
                             movie => {

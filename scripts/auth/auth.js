@@ -71,7 +71,7 @@ const auth = Object.create(null, {
 
             //show movies
             $("#showMovies").on("click", e => {
-                const derp = movieController.getStoredMovies()
+                movieController.getStoredMovies()
             })
 
             // Set up authentication observer
