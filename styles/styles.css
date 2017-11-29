@@ -26,3 +26,27 @@
     border-radius: 10px;
     box-shadow: 10px 5px 20px green;
 }
+/* GRID LAYOUT OF MOVIES */
+#search_db-results {
+    display: grid;
+    grid-template-columns: 25.2% 25.2% 25.2%;
+    grid-gap: 8%;
+    background-color: #fff;
+    color: #444;
+    align-items: center;
+}
+
+.card-block {
+    width: 60%;
+    height: 80%;
+    border-radius: 2px;
+    padding: 20px;
+    box-shadow: 0 1px 3px #5a5a5a;
+    text-align: center
+
+}
+
+.card-block img {
+    width: 50%;
+    height: 60%;
+}
