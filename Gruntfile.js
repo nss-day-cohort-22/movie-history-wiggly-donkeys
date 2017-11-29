@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON("package.json"),
     watch: {
       scripts: {
-        files: ["**/scripts/**/**.js", "!node_modules/**/*.js"],
+        files: ["**/scripts/**/*.js", "**/styles/**/*.css", "index.html"],
         tasks: ["eslint", "browserify"],
         options: {
           spawn: false,
