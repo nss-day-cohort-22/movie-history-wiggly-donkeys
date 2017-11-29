@@ -1,6 +1,8 @@
 // Author(s): Chase, John, Max, and Paul
 // Purpose: Watches if a user is logged in or out. Executes code if/else logged in.
 // ┌(° ͜ʖ͡°)┘
+
+// imports
 const movieController = require("../movieController")
 const firebase = require("firebase")
 
@@ -25,4 +27,5 @@ const observer = Object.create(null, {
     }
 })
 
+// exports
 module.exports = observer

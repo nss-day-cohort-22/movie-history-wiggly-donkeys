@@ -1,11 +1,12 @@
 // Author(s): Paul
 // Purpose: Load movies to DOM
 
+
 const loadMovies = (watched) => {
-    const movies = result.movies.filter(movie => movie.uid === user.uid && movie.watched === watched)
-    const moviesEL = "";
-    movies.forEach(movie => {
-        `<div class="movieCard">
+  const movies = result.movies.filter(movie => movie.uid === user.uid && movie.watched === watched)
+  const moviesEL = "";
+  movies.forEach(movie => {
+    `<div class="movieCard">
     <img class="movieCard_img" src="${a}" alt="Card image cap">
     <div class="movieCard_text">
       <h4 class="movieCard_title">${a}</h4>
@@ -15,8 +16,9 @@ const loadMovies = (watched) => {
     </div>
   </div>
   `
-    })
-    $("#").html(moviesEL)
+  })
+  $("#").html(moviesEL)
 }
 
+// exports
 module.exports = loadMovies

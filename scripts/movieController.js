@@ -65,6 +65,7 @@ const movieController = Object.create(null, {
                 })
         }
     },
+    // movieController.storeMovie - this function stores the movie into firebase
     "storeMovie": {
         value: function (movieId) {
             return $.ajax({
@@ -81,11 +82,11 @@ const movieController = Object.create(null, {
                 )
         }
     },
+    // movieController.getStoredMovies - this function shows the unique stored movies into the DOM for each user. 
     "getStoredMovies": {
         value: function () {
             movieFactory.all()
                 .then(function (response) {
-                    debugger
                     let resultEl = ""
                     response.filter(
                         movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
@@ -96,8 +97,8 @@ const movieController = Object.create(null, {
                                         <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
                                         <div class="card-block_inner">
                                             <h4 class="card-title">${movie.movie.title}</h4>
-                                            <p class="card-text">Release Date${movie.movie.release_date}</p>
-                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>                                                                                        
+                                            <p class="card-text">Release Date: ${movie.movie.release_date}</p>
+                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
                                             </div>
                                     </div>
                                     `
@@ -107,8 +108,8 @@ const movieController = Object.create(null, {
                                         <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${movie.movie.poster_path}" alt="Card image cap">
                                         <div class="card-block_inner">
                                             <h4 class="card-title">${movie.movie.title}</h4>
-                                            <p class="card-text">Release Date${movie.movie.release_date}</p>
-                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>                                                                                        
+                                            <p class="card-text">Release Date: ${movie.movie.release_date}</p>
+                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
                                         </div>
                                     </div>
                                     `
