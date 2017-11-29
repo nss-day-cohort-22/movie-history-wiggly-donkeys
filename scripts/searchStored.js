@@ -2,6 +2,7 @@
 
 const movieFactory = require("./movieFactory")
 const firebase = require("firebase")
+const cardsHTML = require("./cardsHTML")
 
 const searchStoredMovies = Object.create(null, {
     "init": {
@@ -20,23 +21,10 @@ const searchStoredMovies = Object.create(null, {
                     return movies.movie.title.toLowerCase().includes(searchQuery);
                 })
 
-                //filter only movies stored for the current user
-                filteredMovies.filter(movieObj =>
-                    firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false)
-                    //loop through each movie and write the title, poster, releasedate, cast, etc. to resultEl
-                    .forEach(
-                        movie => {
-                            resultEl += `
-                            <div class="card-block" style="width: 20rem;">
-                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${movie.movie.poster_path}" alt="Card image cap">
-                                <div class="card-block_inner">
-                                    <h4 class="card-title">${movie.movie.title}</h4>
-                                    <p class="card-text">Release Date${movie.movie.release_date}</p>
-                                    <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
-                                    </div>
-                            </div>`
-                        })
-                //write the resultEl to the DOM
+                //if there are 3 characters in the search array, populate the dom with the filtered movie array
+                filteredMovies.forEach(
+                    movie => resultEl += cardsHTML(movie))
+
                 $('#search_db-results').html(resultEl)
 
                 //if there are no search results then write 'No Results' to the DOM
@@ -48,31 +36,7 @@ const searchStoredMovies = Object.create(null, {
             } else if (searchQuery.length < 3) {
                 movieFactory.cache.filter(
                     movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
-                        movie => {
-                                if (movie.movie.poster_path === null) {
-                                resultEl += `
-                                <div class="card-block" style="width: 20rem;">
-                                    <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
-                                    <div class="card-block_inner">
-                                        <h4 class="card-title">${movie.movie.title}</h4>
-                                        <p class="card-text">Release Date${movie.movie.release_date}</p>
-                                        <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
-                                        </div>
-                                </div>
-                                `
-                            } else {
-                                resultEl += `
-                                <div class="card-block" style="width: 20rem;">
-                                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${movie.movie.poster_path}" alt="Card image cap">
-                                    <div class="card-block_inner">
-                                        <h4 class="card-title">${movie.movie.title}</h4>
-                                        <p class="card-text">Release Date${movie.movie.release_date}</p>
-                                        <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
-                                    </div>
-                                </div>
-                                `
-                            }
-                        })
+                        movie => resultEl += cardsHTML(movie))
 
                 $('#search_db-results').html(resultEl)
             }

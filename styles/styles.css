@@ -115,3 +115,15 @@
   .rating-stars ul > li.star.selected > i.fa {
     color:#FF912C;
   }
+    display: block;
+    margin: 1em auto;
+}
+
+.deleteMovie {
+    padding: .5em 2.5em;
+    border-radius: 20px;
+    font-weight: bolder;
+    color: grey;
+    font-size: 1em;
+    right: 0px;
+}
