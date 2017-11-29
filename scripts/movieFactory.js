@@ -19,7 +19,6 @@ const movieFactory = Object.create(null, {
                             movies[key].firebaseId = key
                             return movies[key]
                         })
-
                         return this.cache
                     })
                 })
