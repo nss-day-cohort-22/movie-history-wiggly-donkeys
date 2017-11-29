@@ -81,21 +81,14 @@ const movieController = Object.create(null, {
             )
         }
     },
-    "getCast": {
-        value: function (movieId) {
+    "getWatchList" : {
+        value: function(){
             return $.ajax({
-                "async": true,
-                "crossDomain": true,
-                "url": `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=5e5026b9b18d41494cf1a8f0bc65cacc`,
-                "method": "GET",
-                "headers": {},
-                "data": "{}"
-            }).then(
-
-            )
+                
+            })
         }
-    }
-
+    },
+    "showWatchList" : {}
 })
 
 // exports
