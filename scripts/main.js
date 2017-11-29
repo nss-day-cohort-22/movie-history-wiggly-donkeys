@@ -8,4 +8,3 @@ const auth = require("./auth/auth.js")
 // autoexec the init function -> auth.js
 auth.init()
 
-Object.keys(localStorage).find(key => key.startsWith("firebase:auth")).uid
