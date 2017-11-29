@@ -6,6 +6,7 @@
 //imports
 const firebase = require("firebase")
 const movieFactory = require("./movieFactory")
+const searchStoredMovies = require("./searchStored")
 
 // Create object to contain a function. Will be updated
 const movieController = Object.create(null, {
@@ -98,7 +99,7 @@ const movieController = Object.create(null, {
                                         <div class="card-block_inner">
                                             <h4 class="card-title">${movie.movie.title}</h4>
                                             <p class="card-text">Release Date${movie.movie.release_date}</p>
-                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>                                                                                        
+                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
                                             </div>
                                     </div>
                                     `
@@ -109,7 +110,7 @@ const movieController = Object.create(null, {
                                         <div class="card-block_inner">
                                             <h4 class="card-title">${movie.movie.title}</h4>
                                             <p class="card-text">Release Date${movie.movie.release_date}</p>
-                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>                                                                                        
+                                            <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
                                         </div>
                                     </div>
                                     `
@@ -119,6 +120,8 @@ const movieController = Object.create(null, {
                     $('#search_db-results').html(resultEl)
 
                 })
+
+                searchStoredMovies.init()
 
         }
     }
