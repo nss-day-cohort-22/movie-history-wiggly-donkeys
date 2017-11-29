@@ -1,9 +1,9 @@
 // Author(s): Chase, John, Max, and Paul
 // Purpose: This module haandles user login/reg/logout
-// ┌(° ͜ʖ͡°)┘  
+// ┌(° ͜ʖ͡°)┘
 
 // imports
-const searchController = require("../movieController.js")
+const movieController = require("../movieController.js")
 const firebase = require("firebase")
 const observe = require("./observe")
 
@@ -14,7 +14,8 @@ var config = {
     databaseURL: "https://freshtomatoes-aedbb.firebaseio.com",
     projectId: "freshtomatoes-aedbb",
     storageBucket: "freshtomatoes-aedbb.appspot.com",
-    messagingSenderId: "879756087889"
+    messagingSenderId: "879756087889",
+
 };
 
 // object factory for authentication
@@ -65,7 +66,7 @@ const auth = Object.create(null, {
             // Search Bar button
             $("#search_db").on("click", e => {
                 // Function executed on click
-                searchController.search()
+                movieController.search()
             })
 
             // Set up authentication observer

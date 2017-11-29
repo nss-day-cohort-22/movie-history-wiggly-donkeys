@@ -1,11 +1,7 @@
-// Author(s): Max
-// Purpose: This module adds CRUD to our project
-// ┌(° ͜ʖ͡°)┘  
+const auth = require("./auth/auth")
+const firebaseURL = "https://freshtomatoes-aedbb.firebaseio.com"
+const firebase = require("firebase")
 
-//import
-const firebaseURL = "https://freshtomatoes-aedbb.firebaseio.com/"
-
-// Object factory
 const movieFactory = Object.create(null, {
     "cache": {
         value: null,
@@ -18,9 +14,9 @@ const movieFactory = Object.create(null, {
                 "method": "GET"
             }).then(movies => {
                 this.cache = Object.keys(movies).map(key => {
-                    movies[key].id = key
-                    return movies[key]
-                })
+                        movies[key].id = key
+                        return movies[key]
+                    })
 
                 return this.cache
             })
@@ -28,11 +24,16 @@ const movieFactory = Object.create(null, {
     },
     "add": {
         value: function (movie) {
-            return $.ajax({
-                "url": `${firebaseURL}/.json`,
-                "method": "POST",
-                "data": JSON.stringify(movie)
-            })
+            return firebase.auth().currentUser.getToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}/movies/.json?auth=${idToken}`,
+                        "method": "POST",
+                        "data": JSON.stringify({"movie": movie, "uid": firebase.auth().currentUser.uid})
+                    })
+              }).catch(function(error) {
+                window.alert("Error while adding the movie. Please try again.")
+              })
         }
     },
     "remove": {
@@ -54,5 +55,5 @@ const movieFactory = Object.create(null, {
     }
 })
 
-// exports
+
 module.exports = movieFactory
