@@ -1,4 +1,5 @@
 const movieFactory = require("./movieFactory")
+const firebase = require("firebase")
 
 const searchStoredMovies = Object.create(null, {
     "init": {
@@ -20,7 +21,7 @@ const searchStoredMovies = Object.create(null, {
                     movie => {
                         resultEl += `
                         <div class="card-block" style="width: 20rem;">
-                            <img class="card-img-top" src=""https://image.tmdb.org/t/p/w185//${movie.movie.poster_path}"" alt="Card image cap">
+                            <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${movie.movie.poster_path}" alt="Card image cap">
                             <div class="card-block_inner">
                                 <h4 class="card-title">${movie.movie.title}</h4>
                                 <p class="card-text">Release Date${movie.movie.release_date}</p>
@@ -39,6 +40,36 @@ const searchStoredMovies = Object.create(null, {
 
             //if there are less than 3 characters in the input text box, then display the storedmovieArticles
             //THIS NEEDS TO REDISPLAY THE WHOLE CACHE WHEN LESS THAN 3 CHARS IN SEARCH BOX
+            } else if (searchQuery.length < 3) {
+                movieFactory.cache.filter(
+                    movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
+                        movie => {
+                                if (movie.movie.poster_path === null) {
+                                resultEl += `
+                                <div class="card-block" style="width: 20rem;">
+                                    <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
+                                    <div class="card-block_inner">
+                                        <h4 class="card-title">${movie.movie.title}</h4>
+                                        <p class="card-text">Release Date${movie.movie.release_date}</p>
+                                        <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
+                                        </div>
+                                </div>
+                                `
+                            } else {
+                                resultEl += `
+                                <div class="card-block" style="width: 20rem;">
+                                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${movie.movie.poster_path}" alt="Card image cap">
+                                    <div class="card-block_inner">
+                                        <h4 class="card-title">${movie.movie.title}</h4>
+                                        <p class="card-text">Release Date${movie.movie.release_date}</p>
+                                        <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
+                                    </div>
+                                </div>
+                                `
+                            }
+                        })
+
+                $('#search_db-results').html(resultEl)
             }
 
         })
