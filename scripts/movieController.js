@@ -16,13 +16,13 @@ const movieController = Object.create(null, {
             const searchVal = $("#search_input").val()
             // ajax request with searchVal plugged in
             return $.ajax({
-                    "async": true,
-                    "crossDomain": true,
-                    "url": `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${searchVal}&language=en-US&api_key=5e5026b9b18d41494cf1a8f0bc65cacc`,
-                    "method": "GET",
-                    "headers": {},
-                    "data": "{}"
-                })
+                "async": true,
+                "crossDomain": true,
+                "url": `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${searchVal}&language=en-US&api_key=5e5026b9b18d41494cf1a8f0bc65cacc`,
+                "method": "GET",
+                "headers": {},
+                "data": "{}"
+            })
                 // after request returns with movie, spit it out into the DOM
                 .then(function (response) {
                     //clear
@@ -65,7 +65,7 @@ const movieController = Object.create(null, {
                 })
         }
     },
-    "storeMovie" : {
+    "storeMovie": {
         value: function (movieId) {
             return $.ajax({
                 "async": true,
@@ -75,28 +75,33 @@ const movieController = Object.create(null, {
                 "headers": {},
                 "data": "{}"
             }).then(
-                function(response) {
+                function (response) {
                     movieFactory.add(response)
                 }
-            )
+                )
         }
     },
-    "getCast": {
-        value: function (movieId) {
-            return $.ajax({
-                "async": true,
-                "crossDomain": true,
-                "url": `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=5e5026b9b18d41494cf1a8f0bc65cacc`,
-                "method": "GET",
-                "headers": {},
-                "data": "{}"
-            }).then(
+    "getStoredMovies": {
+        value: function () {
+            movieFactory.all()
+                .then(function (response) {
+                    debugger
+                    let resultEl = ""
+                    response.filter(
+                        movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
+                            movie => {
+                                resultEl += `<h1>${movie.uid}</h1>`
+                            }
+                        )
+                    $('#search_db-results').html(resultEl)
 
-            )
+                })
+
         }
     }
-
 })
+
+
 
 // exports
 module.exports = movieController

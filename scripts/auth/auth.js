@@ -69,8 +69,14 @@ const auth = Object.create(null, {
                 movieController.search()
             })
 
+            //show movies
+            $("#showMovies").on("click", e => {
+                const derp = movieController.getStoredMovies()
+            })
+
             // Set up authentication observer
             observe.init(this)
+
         },
 
     },
