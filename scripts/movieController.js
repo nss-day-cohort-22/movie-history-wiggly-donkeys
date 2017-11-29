@@ -6,6 +6,7 @@
 //imports
 const firebase = require("firebase")
 const movieFactory = require("./movieFactory")
+const searchStoredMovies = require("./searchStored")
 
 // Create object to contain a function. Will be updated
 const movieController = Object.create(null, {
@@ -86,6 +87,7 @@ const movieController = Object.create(null, {
             movieFactory.all()
                 .then(function (response) {
                     let resultEl = ""
+                    console.log(response)
                     response.filter(
                         movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
                             movie => {
@@ -120,6 +122,8 @@ const movieController = Object.create(null, {
                     $('#search_db-results').html(resultEl)
 
                 })
+
+                searchStoredMovies.init()
 
         }
     }
