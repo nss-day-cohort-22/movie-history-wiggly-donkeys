@@ -7,6 +7,7 @@
 const auth = require("./auth/auth")
 const firebaseURL = "https://freshtomatoes-aedbb.firebaseio.com"
 const firebase = require("firebase")
+const movieController = require("./movieController")
 
 // Obj.cr function that acts as our factory
 const movieFactory = Object.create(null, {
@@ -50,13 +51,15 @@ const movieFactory = Object.create(null, {
     },
 //DELETE MOVIE FROM FIREBASE
     "remove": {
-        value: function (id) {
+        value: function (e) {
             return firebase.auth().currentUser.getToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}/movies/${id}/.json`,
+                        "url": `${firebaseURL}/movies/${e.target.id}/.json?auth=${idToken}`,
                         "method": "DELETE"
-                    })
+                    }).then(()=> {
+                        debugger
+                        $(e.target.parentElement).remove()})
                 })
         }
     },
