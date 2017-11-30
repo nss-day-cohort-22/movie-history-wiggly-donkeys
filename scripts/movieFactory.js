@@ -28,17 +28,6 @@ const movieFactory = Object.create(null, {
                 })
         }
     },
-    "single": {
-        value: function (id, target) {
-            return firebase.auth().currentUser.getToken(true)
-            .then(idToken => {
-                return $.ajax({
-                    "url": `${firebaseURL}/${id}/${target}/.json?auth=${idToken}`,
-                    "method": "GET"
-                })
-            })
-        }
-    },
 //ADD MOVIE TO FIREBASE with userId, watched status, and rating
     "add": {
         value: function (movie) {

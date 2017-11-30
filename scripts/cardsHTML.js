@@ -1,4 +1,4 @@
-//Author: Paul Ellis; Purpose: populate cards with movie info
+//Author: Paul Ellis (with plenty of contributions from Max Wolf); Purpose: populate cards with movie info
 const starLoad = require('./starLoad')
 
 const cardsHTML = (movie) => {
