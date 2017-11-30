@@ -91,18 +91,24 @@ const movieController = Object.create(null, {
         }
     },
     "getStoredMovies": {
-        value: function () {
+        value: function (tf) {
             movieFactory.all()
                 .then(function (response) {
                     let resultEl = ""
                     response.filter(
-                        movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
-                            movie => resultEl += cardsHTML(movie)
+                        movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === tf).forEach(
+                        movie => resultEl += cardsHTML(movie)
                         )
                     $('#search_db-results').html(resultEl)
                     //add star functionality
                     reviewStars()
                     $(".deleteMovie").on("click", movieFactory.remove)
+                    $(".watched").on("click", (event) => {
+                        debugger
+                        $(event.target.parentElement.parentElement).remove();
+                        movieFactory.replace(true, event.target.id, "watched")
+                    })
+
                 })
 
             searchStoredMovies.init()

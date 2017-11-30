@@ -12,7 +12,7 @@ const cardsHTML = (movie) => {
             <h4 class="card-title">${movie.movie.title}</h4>
             <p class="card-text">Release Date: ${movie.movie.release_date}</p>
             <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
-            <button class="watched">Watched It</button>
+            <button class="watched" id="${movie.firebaseId}">Watched It</button>
             <div class='rating-stars text-center'>
             <ul id='stars'>
               <li class='star ${starLoad(movie.rating, 1)}' title='Poor' data-value='1'>
@@ -45,7 +45,7 @@ const cardsHTML = (movie) => {
             <h4 class="card-title">${movie.movie.title}</h4>
             <p class="card-text">Release Date: ${movie.movie.release_date}</p>
             <p class="card-text">Cast: ${movie.movie.credits.cast[0].name}, ${movie.movie.credits.cast[2].name}, ${movie.movie.credits.cast[3].name}</p>
-            <button class="watched">Watched It</button>
+            <button class="watched" id="${movie.firebaseId}">Watched It</button>
             <div class='rating-stars text-center'>
             <ul id='stars'>
               <li class='star ${starLoad(movie.rating, 1)}' title='Poor' data-value='1'>
