@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "firebase": "^4.6.2",
-    "firebase-admin": "^5.5.1"
+    "jquery": "^3.2.1"
   }
 }

@@ -16,6 +16,7 @@ const movieController = Object.create(null, {
     "search": {
         value: function () {
             // get the search_input value for to be plugged in to the URL for the request
+            debugger
             const searchVal = $("#search_input").val()
             // ajax request with searchVal plugged in
             return $.ajax({
@@ -35,7 +36,7 @@ const movieController = Object.create(null, {
                         // if statement for if the movie info returns without a picture, replace it with a no image found image
                         if (result.poster_path === null) {
                             resultEl += `
-                            <div class="card-block" style="width: 20rem;">
+                            <div class="card-block" style="width: 30rem;">
                                 <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
                                 <div class="card-block_inner">
                                     <h4 class="card-title">${result.title}</h4>
@@ -46,7 +47,7 @@ const movieController = Object.create(null, {
                             `
                         } else {
                             resultEl += `
-                            <div class="card-block" style="width: 20rem;">
+                            <div class="card-block" style="width: 30rem;">
                                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${result.poster_path}" alt="Card image cap">
                                 <div class="card-block_inner">
                                     <h4 class="card-title">${result.title}</h4>
@@ -68,6 +69,7 @@ const movieController = Object.create(null, {
                     //add listener to add to watch list button
                     $(".addToWatchlist").on("click", e => {
                         movieController.storeMovie(e.target.id)
+                        $(e.target).text("Added");
                     })
                 })
         }
