@@ -47,7 +47,7 @@ const reviewStars = function() {
     //When the star is clicked, take the value and store it in firebase as the value of the rating in firebase object
     $('#stars li').on('click', event => {
 
-      movieFactory.replace(parseInt(event.target.getAttribute("title")), event.target.getAttribute("value"),"rating")
+      movieFactory.replace(parseInt(event.target.getAttribute("title")), event.target.getAttribute("value"), "rating")
     })
 
   }

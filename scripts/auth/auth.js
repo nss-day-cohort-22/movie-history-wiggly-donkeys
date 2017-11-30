@@ -34,6 +34,7 @@ const auth = Object.create(null, {
 
             // Event listener to login registered user
             $("#regForm_login").on("click", e => {
+                
                 // Validate login information
                 this.validate(
                     $("#regForm_email").val(),
@@ -43,6 +44,7 @@ const auth = Object.create(null, {
                 $("#regForm_email").val("")
                 $("#regForm_password").val("")
             })
+            
 
             // Event listener to register user
             $("#regForm_saveButt").on("click", e => {
