@@ -1,5 +1,7 @@
+const movieFactory = require("./movieFactory")
+
 const reviewStars = function() {
-    debugger
+
     /* 1. Visualizing things on Hover - See next part for action on click */
     $('#stars li').on('mouseover', function(){
       var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
@@ -23,9 +25,11 @@ const reviewStars = function() {
 
     /* 2. Action to perform on click */
     $('#stars li').on('click', function(){
-      var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-      var stars = $(this).parent().children('li.star');
-
+      let onStar = parseInt($(this).data('value'), 10); // The star currently selected
+      let stars = $(this).parent().children('li.star');
+      console.log(onStar)
+      console.log(stars.length)
+      console.log(stars)
       for (i = 0; i < stars.length; i++) {
         $(stars[i]).removeClass('selected');
       }
@@ -34,9 +38,12 @@ const reviewStars = function() {
         $(stars[i]).addClass('selected');
       }
 
-
     });
 
+    $('#stars li').on('click', event => {
+
+      movieFactory.replace(parseInt(event.target.getAttribute("title")), event.target.getAttribute("value"),"rating")
+    })
 
   }
 

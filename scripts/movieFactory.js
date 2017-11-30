@@ -28,6 +28,17 @@ const movieFactory = Object.create(null, {
                 })
         }
     },
+    "single": {
+        value: function (id, target) {
+            return firebase.auth().currentUser.getToken(true)
+            .then(idToken => {
+                return $.ajax({
+                    "url": `${firebaseURL}/${id}/${target}/.json?auth=${idToken}`,
+                    "method": "GET"
+                })
+            })
+        }
+    },
 //ADD MOVIE TO FIREBASE with userId, watched status, and rating
     "add": {
         value: function (movie) {
@@ -36,7 +47,7 @@ const movieFactory = Object.create(null, {
                     return $.ajax({
                         "url": `${firebaseURL}/movies/.json?auth=${idToken}`,
                         "method": "POST",
-                        "data": JSON.stringify({ "movie": movie, "uid": firebase.auth().currentUser.uid, "watched": false })
+                        "data": JSON.stringify({ "movie": movie, "uid": firebase.auth().currentUser.uid, "watched": false, "rating": 0 })
                     })
                 }).catch(function (error) {
                     window.alert("Error while adding the movie. Please try again.")
@@ -49,7 +60,7 @@ const movieFactory = Object.create(null, {
             return firebase.auth().currentUser.getToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}/movies/${id}/.json`,
+                        "url": `${firebaseURL}/movies/${id}/.json?auth=${idToken}`,
                         "method": "DELETE"
                     })
                 })
@@ -64,7 +75,7 @@ const movieFactory = Object.create(null, {
             return firebase.auth().currentUser.getToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}/movies/${id}/${target}/.json`,
+                        "url": `${firebaseURL}/movies/${id}/${target}/.json?auth=${idToken}`,
                         "method": "PUT",
                         "data": JSON.stringify(dataToReplace)
                     })

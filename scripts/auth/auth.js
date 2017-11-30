@@ -67,12 +67,17 @@ const auth = Object.create(null, {
             $("#search_db").on("click", e => {
                 // Function executed on click
                 movieController.search()
+                //clear the search box
+                $("#search_input").val("")
             })
 
             //show movies
             $("#showMovies").on("click", e => {
                 movieController.getStoredMovies()
+                //clear the search box
+                $("#search_input").val("")
             })
+
 
             // Set up authentication observer
             observe.init(this)

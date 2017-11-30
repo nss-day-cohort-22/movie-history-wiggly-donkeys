@@ -85,9 +85,6 @@
   }
 
 
-
-
-
   /* Rating Star Widgets Style */
   .rating-stars ul {
     list-style-type:none;
@@ -114,7 +111,6 @@
   /* Selected state of the stars */
   .rating-stars ul > li.star.selected > i.fa {
     color:#FF912C;
-  }
     display: block;
     margin: 1em auto;
 }

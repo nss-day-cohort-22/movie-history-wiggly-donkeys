@@ -16,6 +16,7 @@ const movieController = Object.create(null, {
     "search": {
         value: function () {
             // get the search_input value for to be plugged in to the URL for the request
+            debugger
             const searchVal = $("#search_input").val()
             // ajax request with searchVal plugged in
             return $.ajax({
@@ -100,6 +101,7 @@ const movieController = Object.create(null, {
                     $('#search_db-results').html(resultEl)
                     //add star functionality
                     reviewStars()
+
                 })
 
             searchStoredMovies.init()
