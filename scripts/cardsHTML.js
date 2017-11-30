@@ -5,8 +5,8 @@ const cardsHTML = (movie) => {
     let resultEl = "";//variable to store DOM string created below
     if (movie.movie.poster_path === null) {//if the movie return from the ajax call doesn't have poster image, make this string
         resultEl += `
-    <div class="card-block" style="width: 20rem;">
-        <button id="${movie.firebaseId}" class="deleteMovie">X</button>
+    <div class="card-block" style="width: 30rem;">
+        <input type="image" src="../delete.png" id="${movie.firebaseId}" class="deleteMovie" width="25" height="25">
         <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
         <div class="card-block_inner">
             <h4 class="card-title">${movie.movie.title}</h4>
@@ -38,8 +38,8 @@ const cardsHTML = (movie) => {
 
     } else {//if the movie returned does have a poster image, make this string
         resultEl += `
-    <div class="card-block" style="width: 20rem;">
-        <button id="${movie.firebaseId}" class="deleteMovie">X</button>
+    <div class="card-block" style="width: 30rem;">
+        <input type="image" src="../delete.png" id="${movie.firebaseId}" class="deleteMovie" width="25px" height="25px">
         <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${movie.movie.poster_path}" alt="Card image cap">
         <div class="card-block_inner">
             <h4 class="card-title">${movie.movie.title}</h4>

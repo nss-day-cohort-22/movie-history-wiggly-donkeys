@@ -7,4 +7,3 @@ const auth = require("./auth/auth.js")
 
 // autoexec the init function -> auth.js
 auth.init()
-

@@ -7,6 +7,7 @@ const movieController = require("../movieController.js")
 const firebase = require("firebase")
 const observe = require("./observe")
 
+
 // config object given by the movie db
 var config = {
     apiKey: "AIzaSyADtDFsNEKSAHJqo90jkhKuocvBuEtBG5Q",
@@ -71,9 +72,11 @@ const auth = Object.create(null, {
                 $("#search_input").val("")
             })
 
-            //show movies
-            $("#showMovies").on("click", e => {
+            //show un watched movies
+            $("#unwatchedMovies").on("click", e => {
                 movieController.getStoredMovies()
+
+
                 //clear the search box
                 $("#search_input").val("")
             })
