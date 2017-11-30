@@ -16,7 +16,6 @@ const movieController = Object.create(null, {
     "search": {
         value: function () {
             // get the search_input value for to be plugged in to the URL for the request
-            debugger
             const searchVal = $("#search_input").val()
             // ajax request with searchVal plugged in
             return $.ajax({
@@ -40,7 +39,7 @@ const movieController = Object.create(null, {
                                 <img class="card-img-top" src="http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found-300x300.gif" alt="Card image cap">
                                 <div class="card-block_inner">
                                     <h4 class="card-title">${result.title}</h4>
-                                    <p class="card-text">Release Date${result.release_date}</p>
+                                    <p class="card-text">Release Date ${result.release_date}</p>
                                     <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
                                 </div>
                             </div>
@@ -51,7 +50,7 @@ const movieController = Object.create(null, {
                                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w185//${result.poster_path}" alt="Card image cap">
                                 <div class="card-block_inner">
                                     <h4 class="card-title">${result.title}</h4>
-                                    <p class="card-text">Release Date${result.release_date}</p>
+                                    <p class="card-text">Release Date ${result.release_date}</p>
                                     <button class="button addToWatchlist" id="${result.id}">Add to watchlist</button>
                                 </div>
                             </div>
@@ -91,18 +90,23 @@ const movieController = Object.create(null, {
         }
     },
     "getStoredMovies": {
-        value: function () {
+        value: function (tf) {
             movieFactory.all()
                 .then(function (response) {
                     let resultEl = ""
                     response.filter(
-                        movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
-                            movie => resultEl += cardsHTML(movie)
+                        movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === tf).forEach(
+                        movie => resultEl += cardsHTML(movie)
                         )
                     $('#search_db-results').html(resultEl)
                     //add star functionality
                     reviewStars()
                     $(".deleteMovie").on("click", movieFactory.remove)
+                    $(".watched").on("click", (event) => {
+                        $(event.target.parentElement.parentElement).remove();
+                        movieFactory.replace(true, event.target.id, "watched")
+                    })
+
                 })
 
             searchStoredMovies.init()

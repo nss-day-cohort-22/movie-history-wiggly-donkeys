@@ -74,12 +74,21 @@ const auth = Object.create(null, {
 
             //show un watched movies
             $("#unwatchedMovies").on("click", e => {
-                movieController.getStoredMovies()
+                movieController.getStoredMovies(false)
 
 
                 //clear the search box
                 $("#search_input").val("")
             })
+
+            $("#showMovies").on("click", e => {
+                movieController.getStoredMovies(true)
+
+
+                //clear the search box
+                $("#search_input").val("")
+            })
+            
 
 
             // Set up authentication observer

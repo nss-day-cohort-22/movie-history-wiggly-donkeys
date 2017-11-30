@@ -1,6 +1,7 @@
 html,body {
     margin:0;
     padding:0;
+    font-family: 'Arvo', 'serif';
     }
 
 .hidden
@@ -19,12 +20,18 @@ html,body {
     z-index: 1;
     background-image: url("../tomato.jpg");
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+    background-size: 250px;
+    background-position: 440px;
     text-align: center;
     color: green;
-    text-shadow: 1px 1px 1px black;
-    font-size: 1.5em;
+    text-shadow: 1px 1px 1px tomato;
+    font-size: 1.1em;
+    font-family: 'Arvo', serif;
+}
+
+.display-1 {
+  margin-bottom: 0px;
+  padding: 0px;
 }
 
 #search_input {
@@ -36,6 +43,7 @@ html,body {
 .button {
     border-radius: 10px;
     box-shadow: 10px 5px 20px green;
+    margin: 10px;
 }
 /* GRID LAYOUT OF MOVIES */
 #search_db-results {
@@ -138,7 +146,7 @@ html,body {
       transform: scale(0.8);
     }
   }
-  
+
   @keyframes pulse {
     25% {
       -webkit-transform: scale(1.2);
@@ -151,7 +159,7 @@ html,body {
       transform: scale(0.8);
     }
   }
-  
+
   .deleteMovie {
     float: left;
     -webkit-transform: translateZ(0);
@@ -159,7 +167,7 @@ html,body {
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   }
-  
+
   .deleteMovie:hover {
     -webkit-animation-name: pulse;
     animation-name: pulse;
@@ -189,8 +197,9 @@ html,body {
       padding: 10px;
       margin: 5px;
       border-radius: 10px;
-      background-color: #c2c1c1; 
+      background-color: #c2c1c1;
       color: black;
+      font-family: 'Arvo', serif;
   }
 
 .btn:hover,
