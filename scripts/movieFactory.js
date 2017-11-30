@@ -66,7 +66,7 @@ const movieFactory = Object.create(null, {
             return firebase.auth().currentUser.getToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}/movies/${id}/${target}/.json`,
+                        "url": `${firebaseURL}/movies/${id}/${target}/.json?auth=${idToken}`,
                         "method": "PUT",
                         "data": JSON.stringify(dataToReplace)
                     })
