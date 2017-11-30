@@ -53,7 +53,6 @@ const movieFactory = Object.create(null, {
                         "url": `${firebaseURL}/movies/${e.target.id}/.json?auth=${idToken}`,
                         "method": "DELETE"
                     }).then(()=> {
-                        debugger
                         $(e.target.parentElement).remove()})
                 })
         }
