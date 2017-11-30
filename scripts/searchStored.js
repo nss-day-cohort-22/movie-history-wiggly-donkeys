@@ -7,6 +7,8 @@ const cardsHTML = require("./cardsHTML")
 const searchStoredMovies = Object.create(null, {
     "init": {
         value: function () {
+        //add search stored movies search bar to the DOM
+
 
         // Pull movies from storage, filter contents (non case sensitive), save to a new localStorage item - reasign the localStorageItem variable so that the writemovie() function will use the filtered data to construct the movie list -- Switched to keyup to do "live searching"
         document.getElementById("search_input-stored").addEventListener("keyup", event => {
