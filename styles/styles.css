@@ -21,7 +21,7 @@ html,body {
     background-image: url("../tomato.jpg");
     background-repeat: no-repeat;
     background-size: 250px;
-    background-position: 440px;
+    background-position: 32%;
     text-align: center;
     color: green;
     text-shadow: 1px 1px 1px tomato;
@@ -207,29 +207,27 @@ html,body {
   letter-spacing: 5px;
 }
 
-.btn:after,
-.btn:before {
-  backface-visibility: hidden;
-  border: 1px solid rgba(#fff, 0);
-  bottom: 0px;
-  content: " ";
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  transition: all 280ms ease-in-out;
-  width: 0;
+#guill {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  z-index: 1;
+  height: 50%;
+  width: 50%;
+  background-image: url("../guill.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 100%;
+ 
+}
+#guill p {
+  color: white;
+  font-size: 2em;
+  background-color: tomato;
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px;
+  padding: 1em;
+  text-align: center;
 }
 
-.btn:hover:after,
-.btn:hover:before {
-  backface-visibility: hidden;
-  border-color: #fff;
-  transition: width 350ms ease-in-out;
-  width: 70%;
-}
-
-.btn:hover:before {
-  bottom: auto;
-  top: 0;
-  width: 70%;
-}

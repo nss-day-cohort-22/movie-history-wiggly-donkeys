@@ -74,6 +74,7 @@ const auth = Object.create(null, {
 
             // Search Bar button
             const searchCallBack = e => {
+                $("#guill").removeClass("hidden").fadeOut(5000)
                 // Function executed on click
                 movieController.search()
                 //clear the search box
@@ -88,7 +89,7 @@ const auth = Object.create(null, {
             //show un watched movies
             $("#unwatchedMovies").on("click", e => {
                 movieController.getStoredMovies(false)
-
+               
 
                 //clear the search box
                 $("#search_input").val("")
@@ -96,8 +97,6 @@ const auth = Object.create(null, {
 
             $("#showMovies").on("click", e => {
                 movieController.getStoredMovies(true)
-
-
                 //clear the search box
                 $("#search_input").val("")
             })
