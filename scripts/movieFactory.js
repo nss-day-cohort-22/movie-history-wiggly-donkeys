@@ -37,7 +37,7 @@ const movieFactory = Object.create(null, {
                     return $.ajax({
                         "url": `${firebaseURL}/movies/.json?auth=${idToken}`,
                         "method": "POST",
-                        "data": JSON.stringify({ "movie": movie, "uid": firebase.auth().currentUser.uid, "watched": false })
+                        "data": JSON.stringify({ "movie": movie, "uid": firebase.auth().currentUser.uid, "watched": false, "rating": 0 })
                     })
                 }).catch(function (error) {
                     window.alert("Error while adding the movie. Please try again.")
@@ -67,7 +67,7 @@ const movieFactory = Object.create(null, {
             return firebase.auth().currentUser.getToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}/movies/${id}/${target}/.json`,
+                        "url": `${firebaseURL}/movies/${id}/${target}/.json?auth=${idToken}`,
                         "method": "PUT",
                         "data": JSON.stringify(dataToReplace)
                     })
