@@ -16,7 +16,6 @@ const movieController = Object.create(null, {
     "search": {
         value: function () {
             // get the search_input value for to be plugged in to the URL for the request
-            debugger
             const searchVal = $("#search_input").val()
             // ajax request with searchVal plugged in
             return $.ajax({
@@ -104,7 +103,6 @@ const movieController = Object.create(null, {
                     reviewStars()
                     $(".deleteMovie").on("click", movieFactory.remove)
                     $(".watched").on("click", (event) => {
-                        debugger
                         $(event.target.parentElement.parentElement).remove();
                         movieFactory.replace(true, event.target.id, "watched")
                     })
