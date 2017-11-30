@@ -19,13 +19,15 @@ const searchStoredMovies = Object.create(null, {
             //if there are 3 characters in the search array, populate the dom with the filtered movie array
             if (searchQuery.length >= 3) {
                 //define filteredMovies as the movies that include the searchQuery in the title
-                let filteredMovies = movieFactory.cache.filter(movies => {
-                    return movies.movie.title.toLowerCase().includes(searchQuery);
-                })
+                let filteredMovies = movieFactory.cache.filter(
+                        movies => {
+                        return movies.movie.title.toLowerCase().includes(searchQuery);
+                    })
 
                 //if there are 3 characters in the search array, populate the dom with the filtered movie array
-                filteredMovies.forEach(
-                    movie => resultEl += cardsHTML(movie))
+                filteredMovies.filter(
+                    movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
+                        movie => resultEl += cardsHTML(movie))
 
                 $('#search_db-results').html(resultEl)
 
