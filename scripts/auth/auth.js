@@ -61,7 +61,6 @@ const auth = Object.create(null, {
                 // change hidden classes back to modal shown when user logs out
                 this.logout()
                 $("#regForm").removeClass("hidden")
-                $("#mainContent").addClass("hidden")
             })
 
             // Search Bar button
@@ -75,7 +74,7 @@ const auth = Object.create(null, {
             //show un watched movies
             $("#unwatchedMovies").on("click", e => {
                 movieController.getStoredMovies(false)
-
+               
 
                 //clear the search box
                 $("#search_input").val("")
@@ -83,8 +82,6 @@ const auth = Object.create(null, {
 
             $("#showMovies").on("click", e => {
                 movieController.getStoredMovies(true)
-
-
                 //clear the search box
                 $("#search_input").val("")
             })

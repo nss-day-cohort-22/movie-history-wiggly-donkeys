@@ -7,6 +7,8 @@ const cardsHTML = require("./cardsHTML")
 const searchStoredMovies = Object.create(null, {
     "init": {
         value: function () {
+        //add search stored movies search bar to the DOM
+
 
         // Pull movies from storage, filter contents (non case sensitive), save to a new localStorage item - reasign the localStorageItem variable so that the writemovie() function will use the filtered data to construct the movie list -- Switched to keyup to do "live searching"
         document.getElementById("search_input-stored").addEventListener("keyup", event => {
@@ -17,13 +19,16 @@ const searchStoredMovies = Object.create(null, {
             //if there are 3 characters in the search array, populate the dom with the filtered movie array
             if (searchQuery.length >= 3) {
                 //define filteredMovies as the movies that include the searchQuery in the title
-                let filteredMovies = movieFactory.cache.filter(movies => {
-                    return movies.movie.title.toLowerCase().includes(searchQuery);
-                })
+                let filteredMovies = movieFactory.cache.filter(
+                        movies => {
+                        return movies.movie.title.toLowerCase().includes(searchQuery);
+                    })
 
                 //if there are 3 characters in the search array, populate the dom with the filtered movie array
-                filteredMovies.forEach(
-                    movie => resultEl += cardsHTML(movie))
+                filteredMovies.filter(
+                    //only show movies for the current user
+                    movieObj => firebase.auth().currentUser.uid === movieObj.uid).forEach(
+                        movie => resultEl += cardsHTML(movie))
 
                 $('#search_db-results').html(resultEl)
 
@@ -35,7 +40,8 @@ const searchStoredMovies = Object.create(null, {
             //if there are less than 3 characters in the input text box, then display the cache of storedmovies
             } else if (searchQuery.length < 3) {
                 movieFactory.cache.filter(
-                    movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
+                    //only show movies for the current user
+                    movieObj => firebase.auth().currentUser.uid === movieObj.uid).forEach(
                         movie => resultEl += cardsHTML(movie))
 
                 $('#search_db-results').html(resultEl)

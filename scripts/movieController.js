@@ -95,7 +95,8 @@ const movieController = Object.create(null, {
                 .then(function (response) {
                     let resultEl = ""
                     response.filter(
-                        movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === tf).forEach(
+                        movieObj =>  firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === tf).forEach(
+                        
                         movie => resultEl += cardsHTML(movie)
                         )
                     $('#search_db-results').html(resultEl)
