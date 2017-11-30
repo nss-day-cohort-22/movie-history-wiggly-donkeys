@@ -69,10 +69,12 @@ const auth = Object.create(null, {
                 // change hidden classes back to modal shown when user logs out
                 this.logout()
                 $("#regForm").removeClass("hidden")
+                $("#mainContent").addClass("hidden")
             })
 
             // Search Bar button
             const searchCallBack = e => {
+                $("#guill").removeClass("hidden").fadeOut(5000)
                 // Function executed on click
                 movieController.search()
                 //clear the search box

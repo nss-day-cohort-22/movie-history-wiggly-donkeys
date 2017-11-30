@@ -207,3 +207,27 @@ html,body {
   letter-spacing: 5px;
 }
 
+#guill {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  z-index: 1;
+  height: 50%;
+  width: 50%;
+  background-image: url("../guill.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 100%;
+ 
+}
+#guill p {
+  color: white;
+  font-size: 2em;
+  background-color: tomato;
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px;
+  padding: 1em;
+  text-align: center;
+}
+
