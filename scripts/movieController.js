@@ -101,7 +101,7 @@ const movieController = Object.create(null, {
                     $('#search_db-results').html(resultEl)
                     //add star functionality
                     reviewStars()
-
+                    $(".deleteMovie").on("click", movieFactory.remove)
                 })
 
             searchStoredMovies.init()

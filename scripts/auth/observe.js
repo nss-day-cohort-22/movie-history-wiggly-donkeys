@@ -15,6 +15,7 @@ const observer = Object.create(null, {
                     // hide modal
                     $("#regForm").addClass("hidden")
                     $("#mainContent").removeClass("hidden")
+                    $("body").addClass("userPage")
 
                 } else {
                     // nav.init(false)

@@ -3,6 +3,7 @@
 const auth = require("./auth/auth")
 const firebaseURL = "https://freshtomatoes-aedbb.firebaseio.com"
 const firebase = require("firebase")
+const movieController = require("./movieController")
 
 const movieFactory = Object.create(null, {
 //CACHED ARRAY OF MOVIES IN FIREBASE... use when not needing another AJAX call
@@ -45,13 +46,15 @@ const movieFactory = Object.create(null, {
     },
 //DELETE MOVIE FROM FIREBASE
     "remove": {
-        value: function (id) {
+        value: function (e) {
             return firebase.auth().currentUser.getToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}/movies/${id}/.json?auth=${idToken}`,
+                        "url": `${firebaseURL}/movies/${e.target.id}/.json?auth=${idToken}`,
                         "method": "DELETE"
-                    })
+                    }).then(()=> {
+                        debugger
+                        $(e.target.parentElement).remove()})
                 })
         }
     },

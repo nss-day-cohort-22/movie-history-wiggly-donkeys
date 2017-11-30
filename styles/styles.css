@@ -2,19 +2,23 @@
     display: none;
 }
 
-
+.userPage {
+    background-image: url("../tomatoBG.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 #regForm {
-    padding: 2em;
+    padding: 10em;
     margin: auto;
     z-index: 1;
     background-image: url("../tomato.jpg");
     background-repeat: no-repeat;
     background-size: contain;
-    box-shadow: 10px 5px 20px green;
+    background-position: center;
     text-align: center;
     color: green;
     text-shadow: 1px 1px 1px black;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 #search_input {
