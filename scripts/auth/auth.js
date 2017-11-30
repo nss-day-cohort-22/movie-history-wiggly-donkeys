@@ -71,8 +71,8 @@ const auth = Object.create(null, {
                 $("#search_input").val("")
             })
 
-            //show movies
-            $("#showMovies").on("click", e => {
+            //show un watched movies
+            $("#unwatchedMovies").on("click", e => {
                 movieController.getStoredMovies()
                 $("#search_input").val("")
             })
