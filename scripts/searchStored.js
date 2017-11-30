@@ -26,7 +26,8 @@ const searchStoredMovies = Object.create(null, {
 
                 //if there are 3 characters in the search array, populate the dom with the filtered movie array
                 filteredMovies.filter(
-                    movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
+                    //only show movies for the current user
+                    movieObj => firebase.auth().currentUser.uid === movieObj.uid).forEach(
                         movie => resultEl += cardsHTML(movie))
 
                 $('#search_db-results').html(resultEl)
@@ -39,7 +40,8 @@ const searchStoredMovies = Object.create(null, {
             //if there are less than 3 characters in the input text box, then display the cache of storedmovies
             } else if (searchQuery.length < 3) {
                 movieFactory.cache.filter(
-                    movieObj => firebase.auth().currentUser.uid === movieObj.uid && movieObj.watched === false).forEach(
+                    //only show movies for the current user
+                    movieObj => firebase.auth().currentUser.uid === movieObj.uid).forEach(
                         movie => resultEl += cardsHTML(movie))
 
                 $('#search_db-results').html(resultEl)
