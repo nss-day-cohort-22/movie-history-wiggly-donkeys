@@ -32,9 +32,8 @@ const auth = Object.create(null, {
             // init firebase
             firebase.initializeApp(config)
 
-            // Event listener to login registered user
-            $("#regForm_login").on("click", e => {
-                
+            //login callback
+            const loginCallBack = e => {
                 // Validate login information
                 this.validate(
                     $("#regForm_email").val(),
@@ -43,12 +42,20 @@ const auth = Object.create(null, {
                 // Clear the form
                 $("#regForm_email").val("")
                 $("#regForm_password").val("")
-            })
-            
+            }
 
-            // Event listener to register user
-            $("#regForm_saveButt").on("click", e => {
-                // save registered information
+            // login event listeners
+            $("#regForm_email").keypress(function () {
+                if (event.which === 13) loginCallBack();
+            });
+            $("#regForm_password").keypress(function () {
+                if (event.which === 13) loginCallBack();
+            });
+            $('#regForm_login').click(loginCallBack);
+
+            // register callback
+            const registerCallBack = e => {
+                // Validate login information
                 this.create(
                     $("#regForm_email").val(),
                     $("#regForm_password").val()
@@ -56,7 +63,9 @@ const auth = Object.create(null, {
                 // Clear the form
                 $("#regForm_email").val("")
                 $("#regForm_password").val("")
-            })
+            }
+
+            $('#regForm_saveButt').click(registerCallBack);
 
             // Event listener to logout user
             $("#logout").on("click", e => {
@@ -67,17 +76,21 @@ const auth = Object.create(null, {
             })
 
             // Search Bar button
-            $("#search_db").on("click", e => {
+            const searchCallBack = e => {
                 // Function executed on click
                 movieController.search()
                 //clear the search box
                 $("#search_input").val("")
-            })
+            }
+
+            $("#search_input").keypress(function () {
+                if (event.which === 13) searchCallBack();
+            });
+            $('#search_db').click(searchCallBack);
 
             //show un watched movies
             $("#unwatchedMovies").on("click", e => {
                 movieController.getStoredMovies(false)
-
 
                 //clear the search box
                 $("#search_input").val("")
@@ -90,7 +103,7 @@ const auth = Object.create(null, {
                 //clear the search box
                 $("#search_input").val("")
             })
-            
+
 
 
             // Set up authentication observer
